@@ -224,6 +224,8 @@ const Voice = (function () {
 
       const voices = speechSynthesis.getVoices();
 
+      alert("voices=" + voices.length);
+
       voiceJP =
         voices.find(v => v.name.includes("七海")) ||
         voices.find(v => v.lang === "ja-JP");
@@ -249,9 +251,9 @@ const Voice = (function () {
 
   function speak(text, lang) {
 
-    alert("ready=" + ready);
-
     if (!ready || !text) return;
+
+    const uttr = new SpeechSynthesisUtterance(text);
 
     const uttr = new SpeechSynthesisUtterance(text);
     if (lang === "ja") {
