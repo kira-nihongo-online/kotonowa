@@ -90,6 +90,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 　  }
 
+  function setInputLanguage(lang){
+
+      inputJpBtn.classList.remove("active");
+      inputThBtn.classList.remove("active");
+      inputEnBtn.classList.remove("active");
+
+      if(lang === "ja"){
+          inputJpBtn.classList.add("active");
+      }
+
+      if(lang === "th"){
+          inputThBtn.classList.add("active");
+      }
+
+      if(lang === "en"){
+          inputEnBtn.classList.add("active");
+      }
+
+  }
+
   const textarea = document.getElementById("jpInput");
   const resultDiv = document.getElementById("translateResult");
   document.getElementById("micBtn").addEventListener("click", function () {
