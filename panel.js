@@ -54,27 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       currentLanguage = lang;
 
-　　　inputJpBtn.classList.remove("active");
-　　　inputThBtn.classList.remove("active");
-　　　inputEnBtn.classList.remove("active");
-
       jpBtn.classList.remove("active");
       thBtn.classList.remove("active");
       enBtn.classList.remove("active");
 
       if(lang === "ja"){
           jpBtn.classList.add("active");
-          inputJpBtn.classList.add("active");
       }
 
 　    if(lang === "th"){
 　        thBtn.classList.add("active");
-　        inputThBtn.classList.add("active");
 　    }
 
 　    if(lang === "en"){
 　        enBtn.classList.add("active");
-　        inputEnBtn.classList.add("active");
 　    }
 
       /*
