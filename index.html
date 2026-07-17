@@ -1,41 +1,132 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Class Weapon Lite</title>
 
-    <title>Kotonowa</title>
-    <meta name="description" content="Kotonowa - Connect People Through Words">
+<style>
 
-    <link rel="stylesheet" href="style.css">
+body{
+  font-family:sans-serif;
+  padding:10px;
+  margin:0;
+}
+
+h2{
+  margin-top:15px;
+  font-size:16px;
+  border-bottom:1px solid #ccc;
+  padding-bottom:4px;
+}
+
+textarea{
+  width:100%;
+  height:90px;
+  margin-top:10px;
+  padding:10px;
+  box-sizing:border-box;
+  resize:none;
+  font-size:16px;
+}
+
+button{
+  margin-top:5px;
+  padding:6px;
+  width:100%;
+  cursor:pointer;
+}
+
+.langButtons{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.langButtons button{
+  flex:1;
+  height:34px;
+  font-size:15px;
+  font-weight:bold;
+  background:#f5f5f5;
+  border:1px solid #ccc;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.langButtons button.active{
+  background:#d32f2f;
+  color:white;
+  border-color:#d32f2f;
+}
+
+.buttons{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.buttons button{
+  flex:1;
+  height:36px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.result{
+  background:#f5f5f5;
+  border:1px solid #ccc;
+  margin-top:12px;
+  padding:10px;
+  min-height:90px;
+}
+
+/* ========================== */
+/* タイ語だけ見やすく調整 */
+.translated {
+  font-size: 1.3em;    /* 少し小さめに */
+  font-weight: normal;  /* 太すぎない */
+  line-height: 1.3;    /* 詰まりすぎない */
+}
+
+.section{
+  margin-bottom:20px;
+}
+
+.wordRow{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #ddd;
+  padding:3px 0;
+  cursor:pointer;
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <header>
-        <h1>Kotonowa</h1>
-        <p>Connect People Through Words</p>
-    </header>
+<!-- ===== 授業翻訳 ===== -->
+<div class="langButtons">
+  <button id="jpBtn">JP</button>
+  <button id="thBtn" class="active">TH</button>
+  <button id="enBtn">EN</button>
+</div>
 
-    <main>
+<textarea id="jpInput" placeholder="日本語を入力"></textarea>
 
-        <textarea
-            id="inputText"
-            placeholder="Enter text..."
-            rows="6"></textarea>
+<div class="buttons">
+  <button id="micBtn">🎤</button>
+  <button id="translateBtn">🌐</button>
+  <button id="clearBtn">🗑️</button>
+  <button id="speakBtn">🔊</button>
+</div>
 
-        <div class="buttons">
-            <button id="micButton">🎤 Voice</button>
-            <button id="translateButton">🌐 Translate</button>
-        </div>
+<div class="result" id="translateResult"></div>
 
-        <section id="resultArea">
-            <h2>Translation</h2>
-            <div id="translatedText"></div>
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
+<script src="panel.js"></script>
 
 </body>
 </html>
