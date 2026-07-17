@@ -238,7 +238,6 @@ const Voice = (function () {
 
       if (voiceJP || voiceTH || voiceEN) {
         ready = true;
-        alert("ready=true");
 
       }
 
