@@ -154,7 +154,20 @@ document.addEventListener("DOMContentLoaded", function () {
     setLanguage("en");
   });
 
+  inputJpBtn.addEventListener("click", function () {
+    setInputLanguage("ja");
+  });
+
+  inputThBtn.addEventListener("click", function () {
+    setInputLanguage("th");
+  });
+
+  inputEnBtn.addEventListener("click", function () {
+    setInputLanguage("en");
+  });
+
   setLanguage("th");
+  setInputLanguage("ja");
 
   // ===== ボタンイベント =====
   document.getElementById("translateBtn").addEventListener("click", function () {
