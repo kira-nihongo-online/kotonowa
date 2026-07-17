@@ -255,7 +255,6 @@ const Voice = (function () {
 
     const uttr = new SpeechSynthesisUtterance(text);
 
-    const uttr = new SpeechSynthesisUtterance(text);
     if (lang === "ja") {
       uttr.lang = "ja-JP";
       if (voiceJP) uttr.voice = voiceJP;
