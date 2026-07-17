@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 　      enBtn.classList.add("active");
 　    }
 
+      /*
       if (recognition) {
 
         if (lang === "ja") {
@@ -81,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
       }
+     */
 
 　  }
 
