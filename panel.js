@@ -262,7 +262,8 @@ const Voice = (function () {
     }
 
     if (lang === "th") {
-      uttr.lang = "th-TH";
+        uttr.lang = "th-TH";
+        if (voiceTH) uttr.voice = voiceTH;
     }
 
     if (lang === "en") {
