@@ -1,4 +1,4 @@
-// ========================================
+***/ ========================================
 // Class Weapon
 // panel.js (字幕表示対応版)
 // ========================================
@@ -62,33 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
           jpBtn.classList.add("active");
       }
 
-　    if(lang === "th"){
-　        thBtn.classList.add("active");
-　    }
-
-　    if(lang === "en"){
-　        enBtn.classList.add("active");
-　    }
-
-      /*
-      if (recognition) {
-
-        if (lang === "ja") {
-          recognition.lang = "ja-JP";
-        }
-
-        if (lang === "th") {
-          recognition.lang = "th-TH";
-        }
-
-        if (lang === "en") {
-          recognition.lang = "en-US";
-        }
-
+      if(lang === "th"){
+          thBtn.classList.add("active");
       }
-     */
 
-　  }
+      if(lang === "en"){
+          enBtn.classList.add("active");
+      }
+
+  }
 
   function setInputLanguage(lang){
 
