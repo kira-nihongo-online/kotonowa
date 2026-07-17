@@ -252,9 +252,10 @@ const Voice = (function () {
 
     const voices = speechSynthesis.getVoices();
 
-    if (!ready || !text) return;
+    if (!text) return;
 
     const uttr = new SpeechSynthesisUtterance(text);
+
     if (lang === "ja") {
       uttr.lang = "ja-JP";
       if (voiceJP) uttr.voice = voiceJP;
