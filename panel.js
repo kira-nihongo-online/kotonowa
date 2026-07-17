@@ -240,6 +240,11 @@ const Voice = (function () {
         ready = true;
       }
 
+　　　console.log("voices =", speechSynthesis.getVoices().length);
+　　　console.log("JP =", voiceJP);
+　　　console.log("TH =", voiceTH);
+　　　console.log("EN =", voiceEN);
+
     };
 
     setVoices();
@@ -250,6 +255,8 @@ const Voice = (function () {
   function speak(text, lang) {
 
     if (!ready || !text) return;
+
+    console.log(ready);
 
     const uttr = new SpeechSynthesisUtterance(text);
 
