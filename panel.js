@@ -98,14 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if(lang === "ja"){
           inputJpBtn.classList.add("active");
+          if(recognition) recognition.lang = "ja-JP";
       }
 
       if(lang === "th"){
           inputThBtn.classList.add("active");
+          if(recognition) recognition.lang = "th-TH";
       }
 
       if(lang === "en"){
           inputEnBtn.classList.add("active");
+          if(recognition) recognition.lang = "en-US";
       }
 
   }
