@@ -97,6 +97,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const textarea = document.getElementById("jpInput");
   const resultDiv = document.getElementById("translateResult");
+
+  const copyBtn = document.getElementById("copyInputBtn");
+
+  copyBtn.onclick = async function () {
+
+      const text = document.getElementById("jpInput").value;
+
+      if (!text) return;
+
+      try {
+          await navigator.clipboard.writeText(text);
+
+          copyBtn.textContent = "✅";
+
+          setTimeout(function () {
+              copyBtn.textContent = "📋";
+          }, 1000);
+
+      } catch (e) {
+          alert("コピー失敗");
+          console.error(e);
+      }
+
+  };
+
   document.getElementById("micBtn").addEventListener("click", function () {
 
     if (recognition) {
