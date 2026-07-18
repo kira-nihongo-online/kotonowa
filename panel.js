@@ -122,6 +122,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
   };
 
+      const copyResultBtn = document.getElementById("copyResultBtn");
+
+      copyResultBtn.onclick = async function () {
+
+          const text = document
+              .getElementById("translateResult")
+              .innerText
+              .trim();
+
+          if (!text) return;
+
+          try {
+
+              await navigator.clipboard.writeText(text);
+
+              copyResultBtn.textContent = "✅";
+
+              setTimeout(function () {
+                  copyResultBtn.textContent = "📋";
+              }, 1000);
+
+          } catch (e) {
+
+              alert("コピー失敗");
+              console.error(e);
+
+          }
+
+      };
+
   document.getElementById("micBtn").addEventListener("click", function () {
 
     if (recognition) {
