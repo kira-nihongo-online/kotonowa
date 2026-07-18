@@ -113,6 +113,18 @@ button{
   border-color:#d32f2f;
 }
 
+.inputArea{
+    position:relative;
+}
+
+.copyBtn{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+    font-size:28px;
+    cursor:pointer;
+}
+
 </style>
 
 </head>
@@ -146,7 +158,13 @@ button{
   <button id="enBtn">EN</button>
 </div>
 
+<div class="inputArea">
+
 <textarea id="jpInput" placeholder="入力してください"></textarea>
+
+<span class="copyBtn" id="copyInputBtn">📋</span>
+
+</div>
 
 <div class="buttons">
   <button id="micBtn">🎤</button>
