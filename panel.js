@@ -14,53 +14,22 @@ async function translateText() {
   const resultDiv = document.getElementById("translateResult");
 
   if (!text) {
-    resultDiv.innerHTML = "";
-    return;
+   resultDiv.innerHTML = "";
+   return;
   }
 
-  const translated = await new Promise((resolve, reject) => {
+  const url =
+   "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + currentLanguage + "&dt=t&q=" +
+    encodeURIComponent(text);
 
-    const callbackName =
-      "kotonowaCallback_" + Date.now();
-
-    const script = document.createElement("script");
-
-    window[callbackName] = function(data) {
-
-      delete window[callbackName];
-      script.remove();
-
-      if (data.error) {
-        reject(new Error(data.error));
-        return;
-      }
-
-      resolve(data.translated);
-    };
-
-    script.src =
-      "https://script.google.com/macros/s/AKfycbz7uCvLtyF3Usd9zpZvAqgxxPMpl7xajNtxHvwhWRwY6jUsc0M5TesQGZAvJtlwKlRh/exec" +
-      "?text=" + encodeURIComponent(text) +
-      "&lang=" + encodeURIComponent(currentLanguage) +
-      "&callback=" + callbackName;
-
-    script.onerror = function() {
-
-      delete window[callbackName];
-      script.remove();
-
-      reject(new Error("Translation request failed"));
-    };
-
-    document.body.appendChild(script);
-
-  });
+  const res = await fetch(url);
+  const data = await res.json();
+  const translated = data[0].map(t => t[0]).join("");
 
   // サイドパネル表示
-  resultDiv.innerHTML =
-    `<span class="translated">${translated}</span>`;
+  resultDiv.innerHTML = `<span class="translated">${translated}</span>`;
 
-}
+  }
 
 // ========================================
 // 初期設定
