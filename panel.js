@@ -19,12 +19,14 @@ async function translateText() {
   }
 
   const url =
-   "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + currentLanguage + "&dt=t&q=" +
-    encodeURIComponent(text);
+    "https://script.google.com/macros/s/AKfycbz7uCvLtyF3Usd9zpZvAqgxxPMpl7xajNtxHvwhWRwY6jUsc0M5TesQGZAvJtlwKlRh/exec" +
+    "?text=" + encodeURIComponent(text) +
+    "&lang=" + encodeURIComponent(currentLanguage);
 
   const res = await fetch(url);
   const data = await res.json();
-  const translated = data[0].map(t => t[0]).join("");
+
+  const translated = data.translated;
 
   // サイドパネル表示
   resultDiv.innerHTML = `<span class="translated">${translated}</span>`;
