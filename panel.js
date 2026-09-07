@@ -29,9 +29,6 @@ async function translateText() {
   // サイドパネル表示
   resultDiv.innerHTML = `<span class="translated">${translated}</span>`;
 
-  // 翻訳後に自動再生
-  Voice.speak(translated, currentLanguage);
-
   }
 
 // ========================================
