@@ -14,22 +14,38 @@ async function translateText() {
   const resultDiv = document.getElementById("translateResult");
 
   if (!text) {
-   resultDiv.innerHTML = "";
-   return;
+    resultDiv.innerHTML = "";
+    return;
   }
 
   const url =
-   "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + currentLanguage + "&dt=t&q=" +
+    "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + currentLanguage + "&dt=t&q=" +
     encodeURIComponent(text);
 
-  const res = await fetch(url);
-  const data = await res.json();
-  const translated = data[0].map(t => t[0]).join("");
+  try {
 
-  // サイドパネル表示
-  resultDiv.innerHTML = `<span class="translated">${translated}</span>`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("翻訳通信エラー");
+    }
+
+    const data = await res.json();
+    const translated = data[0].map(t => t[0]).join("");
+
+    // サイドパネル表示
+    resultDiv.innerHTML = `<span class="translated">${translated}</span>`;
+
+  } catch (error) {
+
+    resultDiv.innerHTML =
+      `<span class="translated">⚠️ 翻訳エラー</span>`;
+
+    console.error("Translation error:", error);
 
   }
+
+}
 
 // ========================================
 // 初期設定
@@ -175,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       translateText();
 
-    }, 1000);
+    }, 500);
 
   });
 
@@ -213,6 +229,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.getElementById("verifyTranslationBtn").addEventListener("click", async function () {
+
+  const originalResult =
+    document.querySelector("#translateResult > .translated");
+
+  if (!originalResult) return;
+
+  const translatedText = originalResult.innerText.trim();
+
+  if (!translatedText) return;
+
+  let sourceLanguage = "ja";
+
+  if (document.getElementById("inputThBtn").classList.contains("active")) {
+    sourceLanguage = "th";
+  }
+
+  if (document.getElementById("inputEnBtn").classList.contains("active")) {
+    sourceLanguage = "en";
+  }
+
+  const url =
+    "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
+    currentLanguage +
+    "&tl=" +
+    sourceLanguage +
+    "&dt=t&q=" +
+    encodeURIComponent(translatedText);
+
+  try {
+
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("確認翻訳通信エラー");
+    }
+
+    const data = await res.json();
+    const verifiedText = data[0].map(t => t[0]).join("");
+
+    const verifyResultDiv = document.getElementById("verifyResult");
+
+    verifyResultDiv.innerHTML =
+          `<div style="font-size:28px; font-weight:bold;">Verify Translation</div>
+           <div class="translated">${verifiedText}</div>`;
+
+  } catch (error) {
+
+    const verifyResultDiv = document.getElementById("verifyResult");
+
+    verifyResultDiv.innerHTML =
+          `<div style="font-size:28px; font-weight:bold;">Verify Translation</div>
+           <div class="translated">⚠️ 翻訳エラー</div>`;
+    console.error("Verify translation error:", error);
+
+  }
+
+});
   document.getElementById("clearBtn").addEventListener("click", function () {
 
     textarea.value = "";
