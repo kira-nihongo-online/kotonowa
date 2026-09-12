@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Kotonowa</title>
+<title>Kotonowa Student</title>
 
 <style>
 
@@ -125,6 +125,17 @@ button{
     cursor:pointer;
 }
 
+.sendBtn{
+    width:50px;
+    height:50px;
+    cursor:pointer;
+}
+
+.sectionLabel{
+    font-size:28px;
+    line-height:1.2;
+}
+
 #startScreen{
   position:fixed;
   inset:0;
@@ -135,15 +146,6 @@ button{
   z-index:9999;
 }
 
-@media (hover: hover) and (pointer: fine){
-  #startScreen{
-    transform:scale(0.5);
-    transform-origin:top left;
-    width:200%;
-    height:200%;
-  }
-}
-
 </style>
 
 </head>
@@ -151,201 +153,211 @@ button{
 <body>
 
 <div id="startScreen">
-
   <img src="トータルロゴ2.png" alt="Kotonowa" style="width:180px; position:absolute; top:15%; left:50%; transform:translate(-50%,-50%);">
 
-  <div style="position:absolute; top:23%; left:50%; transform:translateX(-50%); text-align:center; font-weight:bold; white-space:nowrap;">
-    <div style="font-size:80px; color:#ffffff;">Kotonowa</div>
-    <div style="font-size:60px; color:#00bfff;">Teacher</div>
-  </div>
+<div style="position:absolute; top:23%; left:50%; transform:translateX(-50%); text-align:center; font-weight:bold; white-space:nowrap;">
+  <div style="font-size:80px; color:#ffffff;">Kotonowa</div>
+  <div style="font-size:60px; color:#00bfff;">Student</div>
+</div>
 
-  <div style="position:absolute; top:35%; left:50%; transform:translateX(-50%); text-align:center; font-size:24px; color:#ffffff; white-space:nowrap;">
-    Connect ・ Communicate ・ Learn
-  </div>
+<div style="position:absolute; top:35%; left:50%; transform:translateX(-50%); text-align:center; font-size:24px; color:#ffffff; white-space:nowrap;">
+  Connect ・ Communicate ・ Learn
+</div>
 
-  <div style="position:absolute; top:40%; left:17.5%; text-align:left; white-space:nowrap;">
-    <div style="font-size:32px; font-weight:bold; color:#ffffff;">Student Number</div>
-  </div>
+<div style="position:absolute; top:40%; left:17.5%; text-align:left; white-space:nowrap;">
+  <div style="font-size:32px; font-weight:bold; color:#ffffff;">Student Number</div>
+</div>
 
-  <div style="position:absolute; top:43%; left:50%; transform:translateX(-50%); width:85%; max-width:700px; height:120px;">
+<div style="position:absolute; top:43%; left:50%; transform:translateX(-50%); width:85%; max-width:700px; height:120px;">
 
-    <div style="position:relative; width:100%; height:100%;">
+ <div style="position:relative; width:100%; height:100%;">
 
-      <input
-        id="studentNumberInput"
-        type="text"
-        inputmode="numeric"
-        maxlength="4"
-        style="width:100%; height:100%; box-sizing:border-box; text-align:center; font-size:72px; letter-spacing:50px; border:3px solid #2196f3; border-radius:18px; padding-right:70px; background:rgba(255,255,255,0.08); color:transparent;"
-      >
+   <input
+     id="studentNumberInput"
+     type="text"
+     inputmode="numeric"
+     maxlength="4"
+     style="width:100%; height:100%; box-sizing:border-box; text-align:center; font-size:72px; letter-spacing:50px; border:3px solid #2196f3; border-radius:18px; padding-right:70px; background:rgba(255,255,255,0.08); color:transparent;"
+   >
 
-      <div
-        id="studentNumberMask"
-        style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding-right:70px; padding-top:20px; box-sizing:border-box; font-size:72px; letter-spacing:20px; color:#ffffff; pointer-events:none;"
-      ></div>
+   <div
+     id="studentNumberMask"
+     style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding-right:70px; padding-top:20px; box-sizing:border-box; font-size:72px; letter-spacing:20px; color:#ffffff; pointer-events:none;"
+   ></div>
 
-      <div onclick="toggleStudentNumber()" style="position:absolute; right:22px; top:50%; transform:translateY(-50%); width:64px; height:44px; cursor:pointer;">
-        <svg viewBox="0 0 64 40" width="64" height="44">
-          <path
-            d="M4 20
-               C12 7, 22 2, 32 2
-               C42 2, 52 7, 60 20
-               C52 33, 42 38, 32 38
-               C22 38, 12 33, 4 20 Z"
-            fill="none"
-            stroke="#ffffff"
-            stroke-width="4"
-            stroke-linejoin="round"
-          />
-          <circle
-            cx="32"
-            cy="20"
-            r="9"
-            fill="none"
-            stroke="#ffffff"
-            stroke-width="4"
-          />
-          <circle
-            cx="32"
-            cy="20"
-            r="4"
-            fill="#ffffff"
-          />
-        </svg>
-      </div>
+   <div onclick="toggleStudentNumber()" style="position:absolute; right:22px; top:50%; transform:translateY(-50%); width:64px; height:44px; cursor:pointer;">
+     <svg viewBox="0 0 64 40" width="64" height="44">
+       <path
+         d="M4 20
+            C12 7, 22 2, 32 2
+            C42 2, 52 7, 60 20
+            C52 33, 42 38, 32 38
+            C22 38, 12 33, 4 20 Z"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="4"
+         stroke-linejoin="round"
+       />
+       <circle
+         cx="32"
+         cy="20"
+         r="9"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="4"
+       />
+       <circle
+         cx="32"
+         cy="20"
+         r="4"
+         fill="#ffffff"
+       />
+     </svg>
+   </div>
 
-    </div>
+ </div>
 
-    <div style="text-align:center; margin-top:18px; font-size:24px; color:#ffffff;">
-      Enter your 4-digit number
-    </div>
+<div style="text-align:center; margin-top:18px; font-size:24px; color:#ffffff;">
+            Enter your 4-digit number
+          </div>
 
-    <button
-      style="
-        position:absolute;
-        top:200%;
-        left:50%;
-        transform:translateX(-50%);
-        width:100%;
-        max-width:700px;
-        height:120px;
-        box-sizing:border-box;
-        margin:0;
-        padding:0;
-        font-size:48px;
-        font-weight:bold;
-        border:3px solid #2196f3;
-        border-radius:18px;
-        background:linear-gradient(90deg,#1976d2,#2196f3);
-        color:#ffffff;
-        cursor:pointer;
-      "
-    >
-      🔗 Connect
-    </button>
+<button
+  style="
+    position:absolute;
+    top:200%;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:700px;
+    height:120px;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-size:48px;
+    font-weight:bold;
+    border:3px solid #2196f3;
+    border-radius:18px;
+    background:linear-gradient(90deg,#1976d2,#2196f3);
+    color:#ffffff;
+    cursor:pointer;
+  "
+>
+  🔗 Connect
+</button>
 
-    <div
-      style="
-        position:absolute;
-        top:400%;
-        left:50%;
-        transform:translateX(-50%);
-        width:100%;
-        max-width:700px;
-        display:flex;
-        align-items:center;
-        gap:32px;
-        color:#ffffff;
-        font-size:28px;
-        text-align:center;
-      "
-    >
-      <div style="flex:1; height:2px; background:#ffffff;"></div>
-      <span>or</span>
-      <div style="flex:1; height:2px; background:#ffffff;"></div>
-    </div>
+<div
+  style="
+    position:absolute;
+    top:400%;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:700px;
+    display:flex;
+    align-items:center;
+    gap:32px;
+    color:#ffffff;
+    font-size:28px;
+    text-align:center;
+  "
+>
+  <div style="flex:1; height:2px; background:#ffffff;"></div>
 
-    <button
-      id="translationOnlyBtn"
-      style="
-        position:absolute;
-        top:500%;
-        left:50%;
-        transform:translateX(-50%);
-        width:100%;
-        max-width:700px;
-        height:120px;
-        box-sizing:border-box;
-        margin:0;
-        padding:0;
-        font-size:48px;
-        font-weight:bold;
-        border:3px solid #2196f3;
-        border-radius:18px;
-        background:rgba(30,70,120,0.65);
-        color:#ffffff;
-        cursor:pointer;
-      "
-    >
-      🌐 Translation Only
-    </button>
+  <span>or</span>
 
-    <div
-      style="
-        position:absolute;
-        top:700%;
-        left:50%;
-        transform:translateX(-50%);
-        text-align:center;
-        font-size:24px;
-        color:#ffffff;
-        white-space:nowrap;
-      "
-    >
-      Words Make a New World
-    </div>
+  <div style="flex:1; height:2px; background:#ffffff;"></div>
+</div>
 
-    <div
-      style="
-        position:absolute;
-        top:900px;
-        left:50%;
-        transform:translateX(-50%);
-        width:90px;
-        height:2px;
-        background:#ffffff;
-      "
-    ></div>
+<button
+id="translationOnlyBtn"
+    style="
 
-  </div>
+    position:absolute;
+    top:500%;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:700px;
+    height:120px;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-size:48px;
+    font-weight:bold;
+    border:3px solid #2196f3;
+    border-radius:18px;
+    background:rgba(30,70,120,0.65);
+    color:#ffffff;
+    cursor:pointer;
+  "
+>
+  🌐 Translation Only
+</button>
+
+<div
+  style="
+    position:absolute;
+    top:700%;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    font-size:24px;
+    color:#ffffff;
+    white-space:nowrap;
+  "
+>
+  Words Make a New World
+</div>
+
+<div
+  style="
+    position:absolute;
+    top:900px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90px;
+    height:2px;
+    background:#ffffff;
+  "
+></div>
+
+</div>
 
 </div>
 
 <!-- ===== 授業翻訳 ===== -->
 
 <!-- ===== ロゴ ===== -->
-<div style="display:flex; align-items:center; justify-content:center; gap:12px; margin:35px 0 25px 0;">
+<div style="display:flex; align-items:center; gap:12px; margin:35px 0 25px 0; position:relative;">
   <img src="トータルロゴ.png" alt="Kotonowa" style="width:48px; height:48px;">
-  <h1 style="margin:0; font-size:40px; font-weight:bold;">Kotonowa</h1>
+  <h1 style="margin:0; font-size:40px; font-weight:bold;">Kotonowa Student</h1>
+
+  <div class="sendBtn"
+       style="position:absolute; right:100px; top:0; display:flex; align-items:center; gap:6px; font-size:28px; font-weight:bold;">
+    <img src="icons8-送信-50.png" alt="Send"
+         style="width:50px; height:50px;">
+    <span>Send</span>
+  </div>
+
 </div>
 
 <div class="topArea">
 </div>
 
-<div>入力</div>
+<div class="sectionLabel">🎤 Input</div>
 
 <div class="langButtons">
-  <button id="inputJpBtn">JP</button>
-  <button id="inputThBtn">TH</button>
-  <button id="inputEnBtn">EN</button>
+  <button id="inputJpBtn">🇯🇵</button>
+  <button id="inputThBtn">🇹🇭</button>
+  <button id="inputEnBtn">🇺🇸</button>
 </div>
 
-<div>翻訳</div>
+<div class="sectionLabel">🌐 Translate</div>
 
 <div class="langButtons">
-  <button id="jpBtn">JP</button>
-  <button id="thBtn" class="active">TH</button>
-  <button id="enBtn">EN</button>
+  <button id="jpBtn">🇯🇵</button>
+  <button id="thBtn" class="active">🇹🇭</button>
+  <button id="enBtn">🇺🇸</button>
 </div>
 
 <div class="inputArea">
@@ -370,6 +382,55 @@ button{
   <span class="copyBtn" id="copyResultBtn">📋</span>
 
 </div>
+
+<div style="margin-top:20px;">
+
+  <button
+    id="verifyTranslationBtn"
+    style="
+      width:400px;
+      height:50px;
+      margin:0;
+      padding:0;
+      font-size:28px;
+      font-weight:bold;
+      border:1px solid #ccc;
+      border-radius:8px;
+      background:#f5f5f5;
+      cursor:pointer;
+    "
+  >
+    🔄 Verify Translation
+  </button>
+
+</div>
+
+<div class="result" id="verifyResult"></div>
+
+<script>
+const studentNumberInput = document.querySelector('#studentNumberInput');
+const studentNumberMask = document.querySelector('#studentNumberMask');
+
+studentNumberInput.addEventListener('input', function(){
+  this.value = this.value.replace(/\D/g, '').slice(0, 4);
+  studentNumberMask.textContent = '*'.repeat(this.value.length);
+});
+
+function toggleStudentNumber(){
+  if(studentNumberMask.style.display === "none"){
+    studentNumberMask.style.display = "flex";
+    studentNumberInput.style.color = "transparent";
+  }else{
+    studentNumberMask.style.display = "none";
+    studentNumberInput.style.color = "#ffffff";
+  }
+}
+
+document.querySelector('#translationOnlyBtn').addEventListener('click', function(){
+  document.querySelector('#startScreen').style.display = 'none';
+});
+
+</script>
 
 <script src="panel.js"></script>
 
