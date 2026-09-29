@@ -54,6 +54,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   Voice.init();
 
+  // ===== Studentからの受信 =====
+  supabaseClient
+    .channel("teacher-messages")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "messages",
+        filter: "receiver_type=eq.teacher"
+      },
+      function (payload) {
+        console.log("Student message received:", payload.new);
+        document.querySelector(".topArea").textContent = payload.new.message;
+      }
+    )
+    .subscribe();
 
   const jpBtn = document.getElementById("jpBtn");
   const thBtn = document.getElementById("thBtn");
