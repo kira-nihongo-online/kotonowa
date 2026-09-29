@@ -237,6 +237,7 @@ button{
           </div>
 
 <button
+  id="connectBtn"
   style="
     position:absolute;
     top:200%;
@@ -449,8 +450,44 @@ document.querySelector('#translationOnlyBtn').addEventListener('click', function
   document.querySelector('#startScreen').style.display = 'none';
 });
 
+document.querySelector('#connectBtn').addEventListener('click', async function(){
+
+  const studentNumber =
+    document.querySelector('#studentNumberInput').value.trim();
+
+  if (studentNumber.length !== 4) {
+    alert('4桁のStudent Numberを入力してください');
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from('students')
+    .select('student_number, status')
+    .eq('student_number', studentNumber)
+    .eq('status', 'active')
+    .maybeSingle();
+
+  if (error) {
+    console.error('Teacher connection error:', error);
+    alert('接続エラー');
+    return;
+  }
+
+  if (!data) {
+    alert('このStudent Numberは登録されていません');
+    return;
+  }
+
+  document.querySelector('#startScreen').style.display = 'none';
+
+  console.log('Kotonowa Teacher connected:', data.student_number);
+
+});
+
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 <script src="panel.js"></script>
 
 </body>
