@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       function (payload) {
         console.log("Student message received:", payload.new);
-        document.querySelector(".topArea").textContent = payload.new.message;
+        document.getElementById("jpInput").value = payload.new.message;
+        translateText();
       }
     )
     .subscribe();
