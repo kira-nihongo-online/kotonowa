@@ -54,6 +54,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   Voice.init();
 
+  // ===== Teacherからの受信 =====
+  supabaseClient
+    .channel("student-messages")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "messages",
+        filter: "receiver_type=eq.student"
+      },
+      function (payload) {
+
+        const currentStudentNumber =
+          document.getElementById("studentNumberInput").value.trim();
+
+        if (payload.new.student_number !== currentStudentNumber) {
+          return;
+        }
+
+        console.log("Teacher message received:", payload.new);
+
+        document.getElementById("jpInput").value = payload.new.message;
+        translateText();
+      }
+    )
+    .subscribe();
+
   // ===== Studentからの受信 =====
   supabaseClient
     .channel("teacher-messages")
