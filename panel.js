@@ -54,6 +54,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   Voice.init();
 
+  // ===== Student 使用 ON / OFF =====
+  const studentAppToggle =
+    document.getElementById("studentAppToggle");
+
+  let studentAppEnabled = true;
+
+  studentAppToggle.addEventListener("click", function () {
+
+    studentAppEnabled = !studentAppEnabled;
+
+    if (studentAppEnabled) {
+      studentAppToggle.textContent = "Student: ON";
+      studentAppToggle.style.background = "#4caf50";
+      studentAppToggle.style.color = "#ffffff";
+    } else {
+      studentAppToggle.textContent = "Student: OFF";
+      studentAppToggle.style.background = "#d32f2f";
+      studentAppToggle.style.color = "#ffffff";
+    }
+
+  });
+
   // ===== Teacherからの受信 =====
   supabaseClient
     .channel("student-messages")
