@@ -60,9 +60,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let studentAppEnabled = true;
 
-  studentAppToggle.addEventListener("click", function () {
+  async function loadStudentAppStatus() {
+
+    const { data, error } = await supabaseClient
+      .from("student_app_settings")
+      .select("enabled")
+      .eq("id", 1)
+      .single();
+
+    if (error) {
+      console.error("Student app status load error:", error);
+      return;
+    }
+
+    studentAppEnabled = data.enabled;
+
+    if (studentAppEnabled) {
+      studentAppToggle.textContent = "Student: ON";
+      studentAppToggle.style.background = "#4caf50";
+      studentAppToggle.style.color = "#ffffff";
+    } else {
+      studentAppToggle.textContent = "Student: OFF";
+      studentAppToggle.style.background = "#d32f2f";
+      studentAppToggle.style.color = "#ffffff";
+    }
+  }
+
+  studentAppToggle.addEventListener("click", async function () {
 
     studentAppEnabled = !studentAppEnabled;
+
+    const { error } = await supabaseClient
+      .from("student_app_settings")
+      .update({
+        enabled: studentAppEnabled
+      })
+      .eq("id", 1);
+
+    if (error) {
+      console.error("Student app status update error:", error);
+
+      studentAppEnabled = !studentAppEnabled;
+      return;
+    }
 
     if (studentAppEnabled) {
       studentAppToggle.textContent = "Student: ON";
@@ -75,6 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
   });
+
+  loadStudentAppStatus();
 
   // ===== Teacherからの受信 =====
   supabaseClient
