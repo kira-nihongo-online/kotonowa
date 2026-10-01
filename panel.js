@@ -80,7 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
         translateText();
       }
     )
-    .subscribe();
+    .subscribe(function (status) {
+      console.log("Teacher Realtime status:", status);
+    });
 
   // ===== Studentからの受信 =====
   supabaseClient
