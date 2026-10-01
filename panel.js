@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("Teacher message received:", payload.new);
 
-        document.getElementById("jpInput").value = payload.new.message;
+        console.log("Teacher message received:", payload.new);
         translateText();
       }
     )
