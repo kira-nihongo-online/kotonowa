@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
         table: "messages",
         filter: "receiver_type=eq.student"
       },
+
       function (payload) {
 
         const currentStudentNumber =
@@ -159,11 +160,24 @@ document.addEventListener("DOMContentLoaded", function () {
         table: "messages",
         filter: "receiver_type=eq.teacher"
       },
-      function (payload) {
-        console.log("Student message received:", payload.new);
-        document.getElementById("jpInput").value = payload.new.message;
-        translateText();
+
+    function (payload) {
+      console.log("Student message received:", payload.new);
+
+      const receivePopup = document.getElementById("receivePopup");
+      receivePopup.style.display = "flex";
+
+      if (window.receivePopupTimer) {
+        clearTimeout(window.receivePopupTimer);
       }
+
+      window.receivePopupTimer = setTimeout(function () {
+        receivePopup.style.display = "none";
+      }, 2000);
+
+      document.getElementById("jpInput").value = payload.new.message;
+      translateText();
+    }
     )
     .subscribe();
 
