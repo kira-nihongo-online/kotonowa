@@ -131,6 +131,28 @@ button{
     cursor:pointer;
 }
 
+#sendPopup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+#sendPopupBox {
+  min-width: 220px;
+  padding: 30px 45px;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #222222;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
 .sectionLabel{
     font-size:28px;
     line-height:1.2;
@@ -340,28 +362,9 @@ id="translationOnlyBtn"
 
 </div>
 
-<div id="teacherApp">
-
-<div id="sendPopup" style="
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.25);
-  z-index:10000;
-  align-items:center;
-  justify-content:center;
-">
-  <div id="sendPopupBox" style="
-    background:#ffffff;
-    padding:30px 60px;
-    border-radius:16px;
-    font-size:36px;
-    font-weight:bold;
-    box-shadow:0 4px 20px rgba(0,0,0,0.25);
-  ">Sending...</div>
-</div>
-
 <!-- ===== 授業翻訳 ===== -->
+
+<div id="teacherApp">
 
 <!-- ===== ロゴ ===== -->
 <div style="display:flex; align-items:center; gap:12px; margin:35px 0 25px 0; position:relative;">
@@ -467,6 +470,10 @@ id="translationOnlyBtn"
 
 <div class="result" id="verifyResult"></div>
 
+</div>
+
+<div id="sendPopup">
+  <div id="sendPopupBox">Sending...</div>
 </div>
 
 <script>
