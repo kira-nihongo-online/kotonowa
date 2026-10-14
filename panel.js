@@ -280,6 +280,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // ===== Send =====
   document.getElementById("sendBtn").addEventListener("click", async function () {
 
+    const sendBtn = this;
+
+    if (sendBtn.dataset.sending === "true") {
+      return;
+    }
+
     const studentNumber =
       document.getElementById("studentNumberInput").value.trim();
 
@@ -291,22 +297,50 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const { error } = await supabaseClient
-      .from("messages")
-      .insert({
-        sender_type: "teacher",
-        student_number: studentNumber,
-        message: message,
-        receiver_type: "student"
-      });
+    sendBtn.dataset.sending = "true";
 
-    if (error) {
+    const popup = document.getElementById("sendPopup");
+    const box = document.getElementById("sendPopupBox");
+
+    try {
+      box.textContent = "Sending...";
+      box.style.color = "#222222";
+      popup.style.display = "flex";
+
+      const { error } = await supabaseClient
+        .from("messages")
+        .insert({
+          sender_type: "teacher",
+          student_number: studentNumber,
+          message: message,
+          receiver_type: "student"
+        });
+
+      if (error) {
+        console.error("Message send error:", error);
+        box.textContent = "NG";
+        box.style.color = "#d32f2f";
+        alert("送信エラー");
+        return;
+      }
+
+      console.log("Message sent:", message);
+
+      box.textContent = "OK";
+      box.style.color = "#16803c";
+
+    } catch (error) {
       console.error("Message send error:", error);
+      box.textContent = "NG";
+      box.style.color = "#d32f2f";
       alert("送信エラー");
-      return;
-    }
 
-    console.log("Message sent:", message);
+    } finally {
+      setTimeout(function () {
+        popup.style.display = "none";
+        sendBtn.dataset.sending = "false";
+      }, 1500);
+    }
 
   });
 
